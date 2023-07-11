@@ -32,7 +32,7 @@ export const getCurrentExercise = (
   const currentExercise = exercisesGroup.getCurrentExercise();
   historyService.replace(exercisesGroup);
 
-  if (currentExercise.isSuccessed()) {
+  if (currentExercise?.isSuccessed()) {
     exercisesGroup.nextExercise();
     historyService.push(exercisesGroup);
     return exercisesGroup;

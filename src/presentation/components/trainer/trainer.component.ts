@@ -35,6 +35,14 @@ export const Trainer = ({ exercisesGroup }: TrainerProps): HTMLElement => {
   ) => {
     const exercise = exercisesGroup.getCurrentExercise();
 
+    if (exercise?.isFailed()) {
+      setTimeout(() => {
+        exercisesGroup.nextExercise();
+        historyService.push(exercisesGroup);
+        renderCurrentExersice(exercisesGroup);
+      }, 300);
+    }
+
     if (exercise) {
       content.replaceChildren(
         Counter({ exercisesGroup }),

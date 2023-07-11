@@ -24,7 +24,7 @@ export const Question = ({
       findChildIndexByNode(node, letterNode),
     );
 
-    if (!success && !exercise.isFailed()) {
+    if (!success && !exercise.isDone()) {
       runErrorAnimation(letterNode);
       return;
     }
@@ -47,7 +47,9 @@ export const Question = ({
   };
 
   addEventListener("popstate", onChangeHistory);
-  document.addEventListener("keyup", onKeyup);
+  if (!exercise.isDone()) {
+    document.addEventListener("keyup", onKeyup);
+  }
 
   node.replaceChildren(
     ...createLetters(exercise.getQuestionLetters(), onInputLetter),
